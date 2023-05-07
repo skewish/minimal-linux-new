@@ -41,7 +41,7 @@ chown -R 0.0 /mnt/sda7
 7. compile & install a monolithic kernel
 
 cd /mnt/sda7/tmp/linux*/
-make distclean
+make clean
 make defconfig
 make menuconfig (disable loadable module support then exit)
 make
@@ -62,7 +62,7 @@ make install DESTDIR=/mnt/sda7
 9. compile & install busybox
 
 cd /mnt/sda7/tmp/busybox*/
-make distclean
+make clean
 make defconfig
 make
 make CONFIG_PREFIX=/mnt/sda7 install
