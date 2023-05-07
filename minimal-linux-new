@@ -43,7 +43,7 @@ chown -R 0.0 /mnt/sda7
 cd /mnt/sda7/tmp/linux*/
 make distclean
 make defconfig
-make menuconfig (disable loadable module support & HD graphics then exit)
+make menuconfig (disable loadable module support then exit)
 make
 make install INSTALL_PATH=/mnt/sda7/boot
 make headers_install INSTALL_HDR_PATH=/mnt/sda7/usr
