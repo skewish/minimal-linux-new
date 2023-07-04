@@ -1,14 +1,16 @@
 minimal-linux-new
 
-1. parent system pre-build setup (fyi)
+1. parent system prebuild setup (fyi)
 
 64-bit debian linux on /dev/sda (newest release)
 10 GB build partition (ex. /dev/sda7)
 typical swap partition (ex. /dev/sda2)
-grub on mbr
+grub on mbr (uncomment GRUB_DISABLE_OS_PROBER=false in /etc/default/grub)
 internet connection
 
-2. within the parent system open a terminal & become su
+2. within the parent system open a terminal & become superuser
+
+su -
 
 3. install a compiler for the parent system (if not already present)
 
@@ -102,7 +104,7 @@ chmod 0755 /mnt/sda7/etc/init.d/rcS
 cd /
 umount /dev/sda7
 grub-install /dev/sda
-update-grub (un-comment GRUB_DISABLE_OS_PROBER=false in /etc/default/grub)
+update-grub
 
 14. reboot (at grub menu select minimal-linux-new)
 
