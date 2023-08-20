@@ -40,7 +40,7 @@ tar -x -f glibc*.tar.xz
 tar -x -f busybox*.tar.bz2
 chown -R 0:0 /mnt/sda7
 
-7. compile & install a monolithic kernel (rec. also disable HD graphics)
+7. compile & install a monolithic kernel (rec. disable 8xx/9xx/HD graphics)
 
 cd /mnt/sda7/tmp/linux*/
 make clean
