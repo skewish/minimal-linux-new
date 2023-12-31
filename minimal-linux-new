@@ -32,7 +32,7 @@ mkdir {boot,dev,proc,sys,tmp}
 6. download & unpack the following source code (remove archives after unpacking)
 
 https://kernel.org/ (newest release) --> /mnt/sda7/tmp
-https://gnu.org/software/libc/ (newest release) --> /mnt/sda7/tmp
+https://sourceware.org/glibc/ (newest release) --> /mnt/sda7/tmp
 https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 cd /mnt/sda7/tmp
 tar -x -f linux*.tar.xz
