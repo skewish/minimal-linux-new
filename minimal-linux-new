@@ -83,7 +83,7 @@ done
 cat > /mnt/sda7/etc/os-release << 'done'
 NAME="minimal-linux-new"
 VERSION="v1"
-HOME_URL="https://github.com/"
+HOME_URL="https://github.com/skewish"
 done
 
 12. add /mnt/sda7/etc/init.d/rcS
