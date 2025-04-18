@@ -4,7 +4,7 @@ minimal-linux-new
 
 64-bit debian linux on /dev/sda1 (newest release)
 10 GB build partition (ex. /dev/sda7)
-typical swap partition (ex. /dev/sda2)
+typical swap partition (ex. /dev/sda5)
 grub on mbr (uncomment GRUB_DISABLE_OS_PROBER=false in /etc/default/grub)
 internet connection
 
@@ -76,7 +76,7 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 proc /proc proc defaults 0 0
 sysfs /sys sysfs defaults 0 0
 /dev/sda7 / ext4 defaults 0 1
-/dev/sda2 none swap sw 0 0
+/dev/sda5 none swap sw 0 0
 done
 
 11. add /mnt/sda7/etc/os-release
