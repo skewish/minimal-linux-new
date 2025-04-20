@@ -68,6 +68,7 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# make defconfig
 ~# make
 ~# make CONFIG_PREFIX=/mnt/sda7 install
+~# cd /mnt/sda7
 ~# ln -f -s ./bin/busybox linuxrc
 
 10. add /mnt/sda7/etc/fstab
