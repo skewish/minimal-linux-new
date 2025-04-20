@@ -18,7 +18,7 @@ internet connection
 ~# apt install bc bison flex gawk python-is-python3 2to3 rsync
 ~# apt install libelf-dev libncurses-dev libsqlite3-dev libssl-dev
 
-4. create & mount a filesystem on the build partition
+4. create & mount a filesystem on the build partition (/dev/sda7)
 
 ~# mkdir /mnt/sda7
 ~# mkfs.ext4 /dev/sda7
@@ -40,13 +40,12 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# tar -x -f busybox*.tar.bz2
 ~# chown -R 0:0 /mnt/sda7
 
-7. compile & install a monolithic kernel 
-(rec. disable DRM graphics on older systems)
+7. compile & install a monolithic kernel (rec. disable DRM on older systems)
 
 ~# cd /mnt/sda7/tmp/linux*/
 ~# make clean
 ~# make defconfig
-~# make menuconfig (disable loadable module & DRM support)
+~# make menuconfig (disable loadable modules & DRM support)
 ~# make
 ~# make install INSTALL_PATH=/mnt/sda7/boot
 ~# make headers_install INSTALL_HDR_PATH=/mnt/sda7/usr
@@ -102,13 +101,11 @@ swapon -a
 done
 ~# chmod 0755 /mnt/sda7/etc/init.d/rcS
 
-13. update grub 
-(rec. password protect grub menu)
+13. update grub (rec. password protect grub menu)
 
 ~# cd /
 ~# umount /dev/sda7
 ~# grub-install /dev/sda
 ~# update-grub
 
-14. reboot 
-(at grub menu select minimal-linux-new)
+14. reboot (at grub menu select minimal-linux-new)
