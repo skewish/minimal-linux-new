@@ -14,9 +14,9 @@ internet connection
 
 3. install a compiler for the parent system (if not already present)
 
-~# apt install build-essential
+~# apt install build-essential pkg-config
 ~# apt install bc bison flex gawk python-is-python3 2to3 rsync
-~# apt install libelf-dev libncurses-dev libssl-dev
+~# apt install libelf-dev libncurses-dev libsqlite3-dev libssl-dev
 
 4. create & mount a filesystem on the build partition
 
@@ -40,12 +40,12 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# tar -x -f busybox*.tar.bz2
 ~# chown -R 0:0 /mnt/sda7
 
-7. compile & install a monolithic kernel (rec. disable intel HD graphics)
+7. compile & install a monolithic kernel (rec. disable DRM graphics)
 
 ~# cd /mnt/sda7/tmp/linux*/
 ~# make clean
 ~# make defconfig
-~# make menuconfig (disable loadable module support & HD graphics then exit)
+~# make menuconfig (disable loadable module & DRM support then exit)
 ~# make
 ~# make install INSTALL_PATH=/mnt/sda7/boot
 ~# make headers_install INSTALL_HDR_PATH=/mnt/sda7/usr
