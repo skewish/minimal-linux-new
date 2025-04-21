@@ -47,8 +47,8 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# make defconfig
 ~# make menuconfig (disable loadable modules & DRM support)
 ~# make
-~# make install INSTALL_PATH=/mnt/sda7/boot
-~# make headers_install INSTALL_HDR_PATH=/mnt/sda7/usr
+~# make INSTALL_PATH=/mnt/sda7/boot install
+~# make INSTALL_HDR_PATH=/mnt/sda7/usr headers_install
 ~# cd /mnt/sda7
 ~# ln -f -s ./boot/vmlinuz* vmlinuz
 
@@ -59,7 +59,7 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# cd build/glibc
 ~# ../../glibc*/configure --prefix=/usr --with-headers=/mnt/sda7/usr/include
 ~# make
-~# make install DESTDIR=/mnt/sda7
+~# make DESTDIR=/mnt/sda7 install
 
 9. compile & install busybox
 
