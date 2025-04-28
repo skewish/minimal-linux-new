@@ -1,9 +1,9 @@
 minimal-linux-new
 
-1. parent system prebuild setup (fyi)
+1. parent system pre-build setup (fyi)
 
 64-bit debian linux on /dev/sda1 (newest release)
-10 GB build partition (ex. /dev/sda7)
+8 GB build partition (ex. /dev/sda7)
 typical swap partition (ex. /dev/sda5)
 grub on mbr (uncomment GRUB_DISABLE_OS_PROBER=false in /etc/default/grub)
 internet connection
@@ -55,8 +55,8 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 8. compile & install glibc
 
 ~# cd /mnt/sda7/tmp
-~# mkdir -p build/glibc
-~# cd build/glibc
+~# mkdir -p ./build/glibc
+~# cd ./build/glibc
 ~# ../../glibc*/configure --prefix=/usr --with-headers=/mnt/sda7/usr/include
 ~# make
 ~# make DESTDIR=/mnt/sda7 install
@@ -68,8 +68,6 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# make defconfig
 ~# make
 ~# make CONFIG_PREFIX=/mnt/sda7 install
-~# cd /mnt/sda7
-~# ln -f -s ./bin/busybox linuxrc
 
 10. add /mnt/sda7/etc/fstab
 
