@@ -50,7 +50,7 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# make INSTALL_PATH=/mnt/sda7/boot install
 ~# make INSTALL_HDR_PATH=/mnt/sda7/usr headers_install
 ~# cd /mnt/sda7
-~# ln -f -s ./boot/vmlinuz* vmlinuz
+~# ln -f -s boot/vmlinuz* vmlinuz
 
 8. compile & install glibc
 
