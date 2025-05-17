@@ -78,15 +78,7 @@ sysfs /sys sysfs defaults 0 0
 /dev/sda5 none swap sw 0 0
 done
 
-11. add /mnt/sda7/etc/os-release
-
-~# cat > /mnt/sda7/etc/os-release << 'done'
-NAME="minimal-linux-new"
-VERSION="v1"
-HOME_URL="https://github.com/skewish"
-done
-
-12. add /mnt/sda7/etc/init.d/rcS
+11. add /mnt/sda7/etc/init.d/rcS
 
 ~# mkdir /mnt/sda7/etc/init.d
 ~# cat > /mnt/sda7/etc/init.d/rcS << 'done'
@@ -98,6 +90,14 @@ mount -a
 swapon -a
 done
 ~# chmod 0755 /mnt/sda7/etc/init.d/rcS
+
+12. add /mnt/sda7/etc/os-release
+
+~# cat > /mnt/sda7/etc/os-release << 'done'
+NAME="minimal-linux-new"
+VERSION="v1"
+HOME_URL="https://github.com/skewish"
+done
 
 13. update grub (rec. password protect grub menu)
 
