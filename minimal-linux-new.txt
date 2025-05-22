@@ -27,7 +27,7 @@ internet connection
 5. add directories to /mnt/sda7 (this becomes the new root directory)
 
 ~# cd /mnt/sda7
-~# mkdir {boot,dev,proc,run,sys,tmp}
+~# mkdir -p {boot,dev,proc,run,sys,tmp}
 
 6. download & unpack the following source code (remove archives after unpacking)
 
@@ -80,7 +80,7 @@ done
 
 11. add /mnt/sda7/etc/init.d/rcS
 
-~# mkdir /mnt/sda7/etc/init.d
+~# mkdir -p /mnt/sda7/etc/init.d
 ~# cat > /mnt/sda7/etc/init.d/rcS << 'done'
 #!/bin/sh
 mount -o remount,rw /dev/sda7 /
