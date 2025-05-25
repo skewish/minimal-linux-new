@@ -55,7 +55,7 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 8. compile & install glibc
 
 ~# cd /mnt/sda7/tmp
-~# mkdir build/glibc
+~# mkdir -p build/glibc
 ~# cd build/glibc
 ~# ../../glibc*/configure --prefix=/usr --with-headers=/mnt/sda7/usr/include
 ~# make
