@@ -15,7 +15,7 @@ internet connection
 3. install a compiler for the parent system (if not already present)
 
 ~# apt install build-essential pkg-config
-~# apt install bc bison flex gawk python-is-python3 2to3 rsync
+~# apt install bc bison flex gawk python-is-python3 rsync
 ~# apt install libelf-dev libncurses-dev libsqlite3-dev libssl-dev
 
 4. create & mount a filesystem on the build partition (/dev/sda7)
@@ -45,7 +45,7 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# cd /mnt/sda7/tmp/linux*/
 ~# make clean
 ~# make defconfig
-~# make menuconfig (disable loadable modules & DRM support)
+~# make menuconfig (disable loadable modules & DRM graphics support)
 ~# make
 ~# make INSTALL_PATH=/mnt/sda7/boot install
 ~# make INSTALL_HDR_PATH=/mnt/sda7/usr headers_install
