@@ -40,7 +40,7 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# tar -x -f busybox*.tar.bz2
 ~# chown -R 0:0 /mnt/sda7
 
-7. compile & install a monolithic kernel (rec. disable DRM on older systems)
+7. compile & install a monolithic kernel (rec. disable DRM)
 
 ~# cd /mnt/sda7/tmp/linux*/
 ~# make clean
