@@ -15,7 +15,7 @@ internet connection
 3. install a compiler for the parent system (if not already present)
 
 ~# apt install build-essential pkg-config
-~# apt install bc bison flex gawk python-is-python3 rsync
+~# apt install bison flex gawk python-is-python3 rsync
 ~# apt install libelf-dev libncurses-dev libsqlite3-dev libssl-dev
 
 4. create & mount a filesystem on the build partition (/dev/sda7)
