@@ -40,12 +40,12 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# tar -x -f busybox*.tar.bz2
 ~# chown -R 0:0 /mnt/sda7
 
-7. compile & install a monolithic kernel (rec. disable DRM)
+7. compile & install a monolithic kernel (rec. disable DRM graphics support)
 
 ~# cd /mnt/sda7/tmp/linux*/
 ~# make clean
 ~# make defconfig
-~# make menuconfig (disable loadable modules & DRM graphics support)
+~# make menuconfig (disable loadable modules & DRM graphics)
 ~# make
 ~# make INSTALL_PATH=/mnt/sda7/boot install
 ~# make INSTALL_HDR_PATH=/mnt/sda7/usr headers_install
