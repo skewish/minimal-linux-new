@@ -1,9 +1,9 @@
 minimal-linux-new
 
-1. parent system prebuild setup (fyi)
+1. my parent system pre-build setup (fyi)
 
 64-bit debian linux on /dev/sda1 (newest release)
-8 GB build partition (ex. /dev/sda7)
+8G build partition (ex. /dev/sda7)
 typical swap partition (ex. /dev/sda5)
 grub on mbr (uncomment GRUB_DISABLE_OS_PROBER=false in /etc/default/grub)
 internet connection
@@ -26,125 +26,84 @@ internet connection
 
 5. add directories to /mnt/sda7 (this becomes the new root directory)
 
-~# cd /mnt/sda7/
+~# cd /mnt/sda7
 ~# mkdir {boot,dev,proc,run,sys,tmp}
 
-6. download & unpack the following source code into /dev/sda7/tmp
+6. download & unpack the following source code (remove archives after unpacking)
 
-https://kernel.org/pub/linux/kernel/ (newest release) --> /mnt/sda7/tmp
-https://kernel.org/pub/linux/utils/util-linux/ (newest release) --> /mnt/sda7/tmp
-https://ftp.gnu.org/gnu/bash/ (newest release) --> /mnt/sda7/tmp
-https://ftp.gnu.org/gnu/coreutils/ (newest release) --> /mnt/sda7/tmp
-https://ftp.gnu.org/gnu/glibc/ (newest release) --> /mnt/sda7/tmp
-https://ftp.gnu.org/gnu/ncurses/ (latest-stable-version) --> /mnt/sda7/tmp
-https://ftp.gnu.org/gnu/sed/ (newest release) --> /mnt/sda7/tmp
+https://kernel.org/ (newest release) --> /mnt/sda7/tmp
+https://sourceware.org/glibc/ (newest release) --> /mnt/sda7/tmp
+https://busybox.net/ (newest release) --> /mnt/sda7/tmp
+~# cd /mnt/sda7/tmp
+~# tar -x -f linux*.tar.xz
+~# tar -x -f glibc*.tar.xz
+~# tar -x -f busybox*.tar.bz2
+~# chown -R 0:0 /mnt/sda7
 
-~# cd /mnt/sda7/tmp/
-~# tar -x -f all files and delete archives
-~# chown -R 0:0 /mnt/sda7/tmp
-
-7. compile & install a monolithic kernel (rec. disable DRM)
+7. compile & install a monolithic kernel (rec. disable DRM graphics support)
 
 ~# cd /mnt/sda7/tmp/linux*/
 ~# make clean
 ~# make defconfig
-~# make menuconfig (disable loadable modules & DRM support)
+~# make menuconfig (disable loadable modules & DRM graphics)
 ~# make
 ~# make INSTALL_PATH=/mnt/sda7/boot install
 ~# make INSTALL_HDR_PATH=/mnt/sda7/usr headers_install
-~# cd /mnt/sda7/
+~# cd /mnt/sda7
 ~# ln -f -s boot/vmlinuz* vmlinuz
 
 8. compile & install glibc
 
-~# cd /mnt/sda7/tmp/
+~# cd /mnt/sda7/tmp
 ~# mkdir -p build/glibc
-~# cd build/glibc/
-~# ../../glibc*/configure --prefix=/usr --exec-prefix=/ --with-headers=/mnt/sda7/usr/include
+~# cd build/glibc
+~# ../../glibc*/configure --prefix=/usr --with-headers=/mnt/sda7/usr/include
 ~# make
 ~# make DESTDIR=/mnt/sda7 install
 
-9. compile & install ncurses
+9. compile & install busybox
 
-~# cd /mnt/sda7/tmp/ncurses*/
-~# ./configure --prefix=/usr --exec-prefix=/ --with-shared --with-termlib --with-versioned-syms
+~# cd /mnt/sda7/tmp/busybox*/
+~# make clean
+~# make defconfig
 ~# make
-~# make DESTDIR=/mnt/sda7 install
+~# make CONFIG_PREFIX=/mnt/sda7 install
 
-10. compile & install bash
-
-~# cd /mnt/sda7/tmp/bash*/
-~# ./configure --prefix=/usr --exec-prefix=/ --with-curses
-~# make
-~# make DESTDIR=/mnt/sda7 install
-~# cd /mnt/sda7/bin
-~# ln -f -s bash sh
-
-11. compile & install util-linux
-
-~# cd /mnt/sda7/tmp/util-linux*/
-~# ./configure --prefix=/usr --exec-prefix=/ --without-readline
-~# make
-~# make DESTDIR=/mnt/sda7 install
-
-12. compile & install coreutils
-
-~# cd /mnt/sda7/tmp/coreutils*/
-~# export FORCE_UNSAFE_CONFIGURE=1
-~# ./configure --prefix=/usr --exec-prefix=/
-~# make
-~# make DESTDIR=/mnt/sda7 install
-
-13. compile & install sed
-
-~# cd /mnt/sda7/tmp/sed*/
-~# ./configure --prefix=/usr --exec-prefix=/
-~# make
-~# make DESTDIR=/mnt/sda7 install
-
-14. update some links
-
-~# cd /mnt/sda7/etc/
-~# ln -f -s ../proc/self/mounts mtab
-~# chroot /mnt/sda7 sbin/ldconfig
-
-15. add /mnt/sda7/etc/fstab
+10. add /mnt/sda7/etc/fstab
 
 ~# cat > /mnt/sda7/etc/fstab << 'done'
 proc /proc proc defaults 0 0
 sysfs /sys sysfs defaults 0 0
-tmpfs /run tmpfs defaults 0 0
 /dev/sda7 / ext4 defaults 0 1
 /dev/sda5 none swap sw 0 0
 done
 
-16. add /mnt/sda7/etc/init
+11. add /mnt/sda7/etc/init.d/rcS
 
-~# cat > /mnt/sda7/sbin/init << 'done'
+~# mkdir /mnt/sda7/etc/init.d
+~# cat > /mnt/sda7/etc/init.d/rcS << 'done'
 #!/bin/sh
-dmesg -n 1
 mount -o remount,rw /dev/sda7 /
 rm -f -r /tmp;mkdir -m 1777 /tmp
+rm /.ash_history
 mount -a
 swapon -a
-exec /bin/bash
 done
-~# chmod 0755 /mnt/sda7/sbin/init
+~# chmod 0755 /mnt/sda7/etc/init.d/rcS
 
-17. add /mnt/sda7/etc/os-release
+12. add /mnt/sda7/etc/os-release
 
 ~# cat > /mnt/sda7/etc/os-release << 'done'
 NAME="minimal-linux-new"
-VERSION="v2"
+VERSION="v1"
 HOME_URL="https://github.com/skewish"
 done
 
-18. update grub (rec. password protect grub menu)
+13. update grub (rec. password protect grub menu)
 
 ~# cd /
 ~# umount /dev/sda7
 ~# grub-install /dev/sda
 ~# update-grub
 
-19. reboot (at grub menu select minimal-linux-new)
-
+14. reboot (at grub menu select minimal-linux-new)
