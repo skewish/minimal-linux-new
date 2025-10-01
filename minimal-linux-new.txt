@@ -62,7 +62,7 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# make
 ~# make DESTDIR=/mnt/sda7 install
 
-9. compile & install busybox
+9. compile & install busybox (disable CONFIG_TC on linux kernel >= 6.8)
 
 ~# cd /mnt/sda7/tmp/busybox*/
 ~# make clean
