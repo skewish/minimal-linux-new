@@ -62,11 +62,12 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# make
 ~# make DESTDIR=/mnt/sda7 install
 
-9. compile & install busybox (disable CONFIG_TC with parent kernel >= 6.8)
+9. compile & install busybox (rec. disable CONFIG_TC if parent kernel >= 6.8)
 
 ~# cd /mnt/sda7/tmp/busybox*/
 ~# make clean
 ~# make defconfig
+~# make menuconfig (disable CONFIG_TC)
 ~# make
 ~# make CONFIG_PREFIX=/mnt/sda7 install
 
