@@ -41,23 +41,21 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# tar -x -f busybox*.tar.bz2
 ~# chown -R 0:0 /mnt/sda7
 
-7. compile & install a monolithic kernel (rec. disable DRM graphics support)
+7. compile & install a monolithic kernel (rec. disable CONFIG_DRM)
 
 ~# cd /mnt/sda7/tmp/linux*/
 ~# make clean
 ~# make defconfig
-~# make menuconfig (disable loadable modules & DRM graphics)
+~# make menuconfig (disable Loadable Modules & Direct Rendering Manager)
 ~# make
 ~# make INSTALL_PATH=/mnt/sda7/boot install
 ~# make INSTALL_HDR_PATH=/mnt/sda7/usr headers_install
-~# cd /mnt/sda7
-~# ln -f -s boot/vmlinuz* vmlinuz
+~# cd /mnt/sda7; ln -f -s boot/vmlinuz* vmlinuz
 
 8. compile & install glibc
 
 ~# cd /mnt/sda7/tmp
-~# mkdir -p build/glibc
-~# cd build/glibc
+~# mkdir -p build/glibc; cd build/glibc
 ~# ../../glibc*/configure --prefix=/usr --with-headers=/mnt/sda7/usr/include
 ~# make
 ~# make DESTDIR=/mnt/sda7 install
@@ -67,7 +65,7 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# cd /mnt/sda7/tmp/busybox*/
 ~# make clean
 ~# make defconfig
-~# make menuconfig (disable CONFIG_TC)
+~# make menuconfig (disable tc)
 ~# make
 ~# make CONFIG_PREFIX=/mnt/sda7 install
 
@@ -76,6 +74,7 @@ https://busybox.net/ (newest release) --> /mnt/sda7/tmp
 ~# cat > /mnt/sda7/etc/fstab << 'done'
 proc /proc proc defaults 0 0
 sysfs /sys sysfs defaults 0 0
+tmpfs /run tmpfs defaults 0 0
 /dev/sda7 / ext4 defaults 0 1
 /dev/sda5 none swap sw 0 0
 done
@@ -85,8 +84,9 @@ done
 ~# mkdir /mnt/sda7/etc/init.d
 ~# cat > /mnt/sda7/etc/init.d/rcS << 'done'
 #!/bin/sh
+dmesg -n 1
 mount -o remount,rw /dev/sda7 /
-rm -f -r /tmp;mkdir -m 1777 /tmp
+#rm -f -r /tmp;mkdir -m 1777 /tmp
 rm /.ash_history
 mount -a
 swapon -a
