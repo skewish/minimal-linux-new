@@ -107,7 +107,7 @@ tar -x -f all files, delete archives & chown to root
 #!/bin/sh
 dmesg -n 1
 mount -a -v
-mount -o remount,rw /
+mount -o remount, rw /
 swapon -a -v
 export PS1='\w\$ '
 exec /sbin/sulogin
