@@ -24,10 +24,10 @@ minimal-linux-new
 ~# mkfs.ext4 /dev/sda8
 ~# mount -t ext4 /dev/sda8 /mnt/sda8
 
-5. add directories to /mnt/sda8 (this becomes the new root directory)
+5. add basic directories to /mnt/sda8 (this becomes the new root directory)
 
 ~# cd /mnt/sda8/
-~# mkdir -p {boot,dev,etc/init.d,proc,run,sys,tmp,usr/lib}
+~# mkdir -p {boot,dev,etc/init.d,proc,run,sys,tmp,usr}
 
 6. download & unpack the following source code into /dev/sda8/tmp
 
