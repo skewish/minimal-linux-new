@@ -99,6 +99,7 @@ tar -x -f all files, delete archives & chown to root
 14. update a few links
 
 ~# cd /mnt/sda8/etc/; ln -f -s ../proc/mounts mtab
+~# cd /mnt/sda8/usr/lib; ln -f -s ../../lib/bash
 ~# chroot /mnt/sda8 ldconfig
 
 15. add /mnt/sda8/etc/init.d/rcS
