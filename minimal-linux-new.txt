@@ -109,7 +109,7 @@ dmesg -n 1
 mount -a -v
 mount -o remount, rw /
 swapon -a -v
-export PS1='\w\$ '
+export PS1="\w\$ "
 exec /sbin/sulogin
 done
 ~# chmod 0755 /mnt/sda8/etc/init.d/rcS
