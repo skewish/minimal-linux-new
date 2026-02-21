@@ -83,18 +83,18 @@ tar -x -f all files, delete archives & chown to root
 ~# make DESTDIR=/mnt/sda8 install
 ~# cd /mnt/sda8/bin; ln -f -s bash sh
 
-12. compile & install util-linux
+12. compile & install minimal-init-new
+
+~# cd /mnt/sda8/tmp/minimal-init-new*/
+~# gcc -static -o init minimal-init-new.c
+~# cp -p init /mnt/sda8/sbin
+
+13. compile & install util-linux
 
 ~# cd /mnt/sda8/tmp/util-linux*/
 ~# ./configure --prefix=/usr --exec-prefix=/ --enable-sulogin
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
-
-13. compile & install minimal-init-new
-
-~# cd /mnt/sda8/tmp/minimal-init-new*/
-~# gcc -static -o init minimal-init-new.c
-~# cp -p init /mnt/sda8/sbin
 
 14. update a few links
 
