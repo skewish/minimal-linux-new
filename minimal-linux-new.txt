@@ -1,6 +1,6 @@
 minimal-linux-new
 
-1. parent system pre-build setup (fyi)
+1. my parent system pre-build setup (fyi)
 
 -64-bit debian linux on /dev/sda1 (newest release)
 -8 GB build partition (ex. /dev/sda8)
