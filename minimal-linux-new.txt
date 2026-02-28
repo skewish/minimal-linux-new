@@ -72,7 +72,7 @@ tar -x -f all files, delete archives & chown to root
 10. compile & install ncurses
 
 ~# cd /mnt/sda8/tmp/ncurses*/
-~# ./configure --prefix=/usr --exec-prefix=/ --disable-widec --with-shared --with-termlib --with-versioned-syms
+~# ./configure --prefix=/usr --exec-prefix=/ --disable-widec --with-{shared,termlib,versioned-syms}
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
