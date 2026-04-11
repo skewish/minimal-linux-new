@@ -91,7 +91,6 @@ tar -x -f all files, delete archives & chown to root
 ~# ./configure --prefix=/usr --exec-prefix=/ --libexecdir=/usr/libexec
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
-~# cd /mnt/sda8/usr/bin; ln -f -s ../../bin/install
 
 13. compile & install minimal-init-new
 
@@ -142,7 +141,7 @@ VERSION="v2"
 HOME_URL="https://github.com/skewish"
 done
 
-19. add /mnt/sda8/etc/passwd (rec. update the password later)
+19. add /mnt/sda8/etc/passwd (rec. add your password later)
 
 ~# cat > /mnt/sda8/etc/passwd << 'done'
 root::0:0::/:/bin/bash
