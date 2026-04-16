@@ -58,7 +58,7 @@ tar -x -f all files, delete archives & chown to root
 
 ~# cd /mnt/sda8/tmp/
 ~# mkdir -p build/glibc; cd build/glibc/
-~# ../../glibc*/configure --prefix=/usr --with-headers=/mnt/sda8/usr/include
+~# ../../glibc*/configure --prefix=/usr
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
