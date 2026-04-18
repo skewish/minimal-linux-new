@@ -141,7 +141,7 @@ VERSION="v2"
 HOME_URL="https://github.com/skewish"
 done
 
-19. add /mnt/sda8/etc/passwd (rec. add password later)
+19. add /mnt/sda8/etc/passwd (rec. leave password field empty)
 
 ~# cat > /mnt/sda8/etc/passwd << 'done'
 root::0:0::/:/bin/bash
