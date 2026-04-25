@@ -35,12 +35,13 @@ https://kernel.org/pub/linux/kernel/ (newest release) --> /mnt/sda8/tmp
 https://kernel.org/pub/linux/utils/util-linux/ (newest release) --> /mnt/sda8/tmp
 https://ftp.gnu.org/gnu/bash/ (newest release) --> /mnt/sda8/tmp
 https://ftp.gnu.org/gnu/coreutils/ (newest release) --> /mnt/sda8/tmp
+https://ftp.gnu.org/gnu/ed/ (newest release) --> /mnt/sda8/tmp
 https://ftp.gnu.org/gnu/glibc/ (newest release) --> /mnt/sda8/tmp
 https://ftp.gnu.org/gnu/ncurses/ (newest release) --> /mnt/sda8/tmp
 https://github.com/besser82/libxcrypt/ (newest release) --> /mnt/sda8/tmp
 https://github.com/skewish/minimal-init-new/ (newest release) --> /mnt/sda8/tmp
 
-tar -x -f all files, delete archives & chown to root
+unpack all files (ed requires tarlz), delete archives & chown to root
 ~# chown -R 0:0 /mnt/sda8
 
 7. compile & install a monolithic kernel (rec. disable DRM)
@@ -92,25 +93,32 @@ tar -x -f all files, delete archives & chown to root
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
-13. compile & install minimal-init-new
+13. compile & install ed
+
+~# cd /mnt/sda8/tmp/ed*/
+~# ./configure --prefix=/usr --exec-prefix=/
+~# make
+~# make DESTDIR=/mnt/sda8 install
+
+14. compile & install minimal-init-new
 
 ~# cd /mnt/sda8/tmp/minimal-init-new*/
 ~# gcc -static -o init minimal-init-new.c
 ~# cp -p init /mnt/sda8/sbin
 
-14. compile & install util-linux
+15. compile & install util-linux
 
 ~# cd /mnt/sda8/tmp/util-linux*/
 ~# ./configure --prefix=/usr --exec-prefix=/ --enable-sulogin
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
-15. update a few links
+16. update a few links
 
 ~# cd /mnt/sda8/etc/; ln -f -s ../proc/mounts mtab
 ~# chroot /mnt/sda8 ldconfig
 
-16. add /mnt/sda8/etc/init.d/rcS
+17. add /mnt/sda8/etc/init.d/rcS
 
 ~# cat > /mnt/sda8/etc/init.d/rcS << 'done'
 #!/bin/sh
@@ -123,7 +131,7 @@ exec /sbin/sulogin
 done
 ~# chmod 0755 /mnt/sda8/etc/init.d/rcS
 
-17. add /mnt/sda8/etc/fstab
+18. add /mnt/sda8/etc/fstab
 
 ~# cat > /mnt/sda8/etc/fstab << 'done'
 proc /proc proc defaults 0 0
@@ -133,7 +141,7 @@ tmpfs /run tmpfs defaults 0 0
 /dev/sda5 none swap sw 0 0
 done
 
-18. add /mnt/sda8/etc/os-release
+19. add /mnt/sda8/etc/os-release
 
 ~# cat > /mnt/sda8/etc/os-release << 'done'
 NAME="minimal-linux-new"
@@ -141,17 +149,19 @@ VERSION="v2"
 HOME_URL="https://github.com/skewish"
 done
 
-19. add /mnt/sda8/etc/passwd (rec. leave password field empty)
+20. add /mnt/sda8/etc/passwd (rec. leave password field empty)
 
 ~# cat > /mnt/sda8/etc/passwd << 'done'
 root::0:0::/:/bin/bash
 done
 
-20. update grub (rec. password protect grub menu)
+21. update grub (rec. password protect grub menu)
 
 ~# cd /
 ~# umount /dev/sda8
 ~# grub-install /dev/sda
 ~# update-grub
 
-21. reboot (at grub menu select minimal-linux-new)
+22. reboot (at grub menu select minimal-linux-new)
+
+
