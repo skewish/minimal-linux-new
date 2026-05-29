@@ -163,5 +163,3 @@ done
 ~# update-grub
 
 22. reboot (at grub menu select minimal-linux-new)
-
-
