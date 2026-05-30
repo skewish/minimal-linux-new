@@ -45,7 +45,7 @@ unpack all files (ed requires tarlz), delete archives & chown to root
 ~# chown -R 0:0 /mnt/sda8
 
 7. compile & install a monolithic kernel (rec. disable DRM)
-	
+
 ~# cd /mnt/sda8/tmp/linux*/
 ~# make clean
 ~# make defconfig
