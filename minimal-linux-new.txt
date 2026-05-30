@@ -155,7 +155,7 @@ done
 root::0:0::/:/bin/bash
 done
 
-21. update grub (rec. password protect grub menu)
+21. update grub (opt. password protect grub menu)
 
 ~# cd /
 ~# umount /dev/sda8
