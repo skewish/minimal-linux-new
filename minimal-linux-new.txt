@@ -145,7 +145,7 @@ done
 
 ~# cat > /mnt/sda8/etc/os-release << 'done'
 NAME="minimal-linux-new"
-VERSION="v2"
+VERSION="v3"
 HOME_URL="https://github.com/skewish"
 done
 
