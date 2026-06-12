@@ -41,7 +41,7 @@ https://ftp.gnu.org/gnu/ncurses/ (newest release) --> /mnt/sda8/tmp
 https://github.com/besser82/libxcrypt/ (newest release) --> /mnt/sda8/tmp
 https://github.com/skewish/minimal-init-new/ (newest release) --> /mnt/sda8/tmp
 
-unpack all files (ed requires tarlz), delete archives & chown to root
+unpack all files (ed requires lzip), delete archives & chown to root
 ~# chown -R 0:0 /mnt/sda8
 
 7. compile & install a monolithic kernel (rec. disable DRM)
