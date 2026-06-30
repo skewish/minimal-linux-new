@@ -66,21 +66,21 @@ unpack all files (ed requires lzip), delete archives & chown to root
 9. compile & install libxcrypt
 
 ~# cd /mnt/sda8/tmp/libxcrypt*/
-~# ./configure --prefix=/usr --exec-prefix=/
+~# ./configure --prefix=/usr
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
 10. compile & install ncurses
 
 ~# cd /mnt/sda8/tmp/ncurses*/
-~# ./configure --prefix=/usr --exec-prefix=/ --disable-widec --with-{shared,termlib,versioned-syms}
+~# ./configure --prefix=/usr --disable-widec --with-{shared,termlib,versioned-syms}
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
 11. compile & install bash
 
 ~# cd /mnt/sda8/tmp/bash*/
-~# ./configure --prefix=/usr --exec-prefix=/ --with-curses
+~# ./configure --prefix=/usr --exec-prefix=/ --with-curses --libdir=/usr/lib
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 ~# cd /mnt/sda8/bin; ln -f -s bash sh
@@ -89,21 +89,21 @@ unpack all files (ed requires lzip), delete archives & chown to root
 
 ~# cd /mnt/sda8/tmp/coreutils*/
 ~# export FORCE_UNSAFE_CONFIGURE=1
-~# ./configure --prefix=/usr --exec-prefix=/ --libexecdir=/usr/libexec
+~# ./configure --prefix=/usr
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
 13. compile & install ed
 
 ~# cd /mnt/sda8/tmp/ed*/
-~# ./configure --prefix=/usr --exec-prefix=/
+~# ./configure --prefix=/usr
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
 14. compile & install util-linux
 
 ~# cd /mnt/sda8/tmp/util-linux*/
-~# ./configure --prefix=/usr --exec-prefix=/ --enable-sulogin
+~# ./configure --prefix=/usr --exec-prefix=/ --enable-sulogin --libdir=/usr/lib
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
