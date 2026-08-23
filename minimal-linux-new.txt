@@ -41,7 +41,7 @@ https://ftp.gnu.org/gnu/ncurses/ (newest release) --> /mnt/sda8/tmp
 https://github.com/besser82/libxcrypt/ (newest release) --> /mnt/sda8/tmp
 https://github.com/skewish/minimal-init-new/ (newest release) --> /mnt/sda8/tmp
 
-unpack all files (ed requires lzip), remove tar archives & chown to root
+unpack all files (ed requires lzip), remove archives & chown to root
 ~# chown -R 0:0 /mnt/sda8
 
 7. compile & install a monolithic kernel (rec. disable DRM)
@@ -104,7 +104,7 @@ unpack all files (ed requires lzip), remove tar archives & chown to root
 
 ~# cd /mnt/sda8/tmp/util-linux*/
 ~# ./configure --prefix=/usr --exec-prefix=/ --enable-sulogin --libdir=/usr/lib
-~# make
+~# make CFLAGS=-DUSE_ONELINE
 ~# make DESTDIR=/mnt/sda8 install
 
 15. compile & install minimal-init-new
@@ -126,7 +126,7 @@ dmesg -n 1
 mount -v -a
 mount -v -o remount, rw /
 swapon -v -a
-export PS1='\w\$ '
+export PS1='\w\$ ' IGNOREEOF=99
 exec /sbin/sulogin
 done
 ~# chmod 0755 /mnt/sda8/etc/init.d/rcS
