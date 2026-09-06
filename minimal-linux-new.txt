@@ -41,8 +41,8 @@ https://ftp.gnu.org/gnu/ncurses/ (newest release) --> /mnt/sda8/tmp
 https://github.com/besser82/libxcrypt/ (newest release) --> /mnt/sda8/tmp
 https://github.com/skewish/minimal-init-new/ (newest release) --> /mnt/sda8/tmp
 
-unpack all files (ed requires lzip), remove archives & chown to root
-~# chown -R 0:0 /mnt/sda8
+unpack files (ed requires lzip), remove archives & chown to root
+~# chown -R 0:0 /mnt/sda8/tmp
 
 7. compile & install a monolithic kernel (rec. disable DRM)
 
@@ -103,6 +103,7 @@ unpack all files (ed requires lzip), remove archives & chown to root
 14. compile & install util-linux
 
 ~# cd /mnt/sda8/tmp/util-linux*/
+~# sed -i '17a #include <linux/openat2.h>' libmount/src/hook_idmap.c
 ~# ./configure --prefix=/usr --exec-prefix=/ --enable-sulogin --libdir=/usr/lib
 ~# make CFLAGS=-DUSE_ONELINE
 ~# make DESTDIR=/mnt/sda8 install
