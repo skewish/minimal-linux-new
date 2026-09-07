@@ -151,17 +151,25 @@ ID=linux
 HOME_URL="https://github.com/skewish"
 done
 
-20. add /mnt/sda8/etc/passwd (rec. leave password field empty)
+20. add /mnt/sda8/etc/passwd
 
 ~# cat > /mnt/sda8/etc/passwd << 'done'
 root::0:0::/:/bin/bash
 done
 
-21. update grub (opt. password protect grub menu)
+21. generate a password
+
+~# passwd -P /mnt/sda8 root
+
+	Changing password for root
+	New password:
+	Re-enter new password:
+
+22. update grub (opt. password protect grub menu)
 
 ~# cd /
 ~# umount /dev/sda8
 ~# grub-install /dev/sda
 ~# update-grub
 
-22. reboot (at grub menu select minimal-linux-new)
+23. reboot (at grub menu select minimal-linux-new)
