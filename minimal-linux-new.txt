@@ -159,7 +159,7 @@ done
 
 21. generate a password
 
-~# passwd -P /mnt/sda8 root
+~# passwd -P /mnt/sda8 root (remember your password)
 
 	Enter the new password (minimum of 5, maximum of 8 characters)
 	Please use a combination of upper and lower case letters and numbers.
