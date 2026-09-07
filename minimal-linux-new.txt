@@ -156,6 +156,7 @@ done
 ~# cat > /mnt/sda8/etc/passwd << 'done'
 root::0:0::/:/bin/bash
 done
+~# chmod 0644 /mnt/sda8/etc/passwd
 
 21. generate a password
 
