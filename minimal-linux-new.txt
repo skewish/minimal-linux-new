@@ -161,11 +161,13 @@ done
 
 ~# passwd -P /mnt/sda8 root
 
+	Enter the new password (minimum of 5, maximum of 8 characters)
+	Please use a combination of upper and lower case letters and numbers.
 	Changing password for root
 	New password:
 	Re-enter new password:
 
-22. update grub (opt. password protect grub menu)
+22. update grub
 
 ~# cd /
 ~# umount /dev/sda8
