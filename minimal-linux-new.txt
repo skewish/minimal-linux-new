@@ -158,12 +158,10 @@ root::0:0::/:/bin/bash
 done
 ~# chmod 0644 /mnt/sda8/etc/passwd
 
-21. generate a password
+21. generate a password for root
 
 ~# passwd -P /mnt/sda8 root (remember your password)
 
-	Enter the new password (minimum of 5, maximum of 8 characters)
-	Please use a combination of upper and lower case letters and numbers.
 	Changing password for root
 	New password:
 	Re-enter new password:
