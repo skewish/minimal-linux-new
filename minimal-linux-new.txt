@@ -127,6 +127,7 @@ mount -v -a
 mount -v -o remount, rw /
 swapon -v -a
 export IGNOREEOF=99 PS1='\w\$ '
+hostname localhost
 exec /sbin/sulogin
 done
 ~# chmod 0755 /mnt/sda8/etc/init.d/rcS
