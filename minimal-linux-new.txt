@@ -126,7 +126,6 @@ dmesg -n 1
 mount -v -a
 mount -v -o remount, rw /
 swapon -v -a
-hostname localhost
 export IGNOREEOF=99 PS1='\w\$ '
 exec /sbin/sulogin
 done
