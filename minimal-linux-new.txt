@@ -9,23 +9,19 @@ minimal-linux-new
 -internet connection
 
 2. within the parent system (debian) open a terminal & become superuser
-
 ~# su -
 
 3. install a compiler for the parent system (if not already present)
-
 ~# apt install build-essential pkg-config
 ~# apt install autoconf bison flex gawk libtool python-is-python3 rsync
 ~# apt install libelf-dev libncurses-dev libsqlite3-dev libssl-dev
 
 4. create & mount a filesystem on the build partition (/dev/sda8)
-
 ~# mkdir /mnt/sda8
 ~# mkfs.ext4 /dev/sda8
 ~# mount -t ext4 /dev/sda8 /mnt/sda8
 
 5. add basic directories to /mnt/sda8 (this becomes the new root directory)
-
 ~# cd /mnt/sda8/
 ~# mkdir -p {boot,dev,etc/init.d,proc,run,sys,tmp}
 
@@ -41,11 +37,10 @@ https://ftp.gnu.org/gnu/ncurses/ (newest release) --> /mnt/sda8/tmp
 https://github.com/besser82/libxcrypt/ (newest release) --> /mnt/sda8/tmp
 https://github.com/skewish/minimal-init-new/ (newest release) --> /mnt/sda8/tmp
 
-unpack files (ed requires lzip), remove archives & chown to root
+7. unpack files (ed requires lzip), remove archives & chown to root
 ~# chown -R 0:0 /mnt/sda8/tmp
 
-7. compile & install a monolithic kernel (rec. disable DRM)
-
+8. compile & install a monolithic kernel (rec. disable DRM)
 ~# cd /mnt/sda8/tmp/linux*/
 ~# make clean
 ~# make defconfig
@@ -55,71 +50,61 @@ unpack files (ed requires lzip), remove archives & chown to root
 ~# make INSTALL_HDR_PATH=/mnt/sda8/usr headers_install
 ~# cd /mnt/sda8/; ln -f -s boot/vmlinuz* vmlinuz
 
-8. compile & install glibc
-
+9. compile & install glibc
 ~# cd /mnt/sda8/tmp/
 ~# mkdir -p build/glibc; cd build/glibc/
 ~# ../../glibc*/configure --prefix=/usr
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
-9. compile & install libxcrypt
-
+10. compile & install libxcrypt
 ~# cd /mnt/sda8/tmp/libxcrypt*/
 ~# ./configure --prefix=/usr
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
-10. compile & install ncurses
-
+11. compile & install ncurses
 ~# cd /mnt/sda8/tmp/ncurses*/
 ~# ./configure --prefix=/usr --disable-widec --with-{shared,termlib,versioned-syms}
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
-11. compile & install bash
-
+12. compile & install bash
 ~# cd /mnt/sda8/tmp/bash*/
 ~# ./configure --prefix=/usr --exec-prefix=/ --with-curses --libdir=/usr/lib
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 ~# cd /mnt/sda8/bin; ln -f -s bash sh
 
-12. compile & install coreutils
-
+13. compile & install coreutils
 ~# cd /mnt/sda8/tmp/coreutils*/
 ~# export FORCE_UNSAFE_CONFIGURE=1
 ~# ./configure --prefix=/usr --without-selinux
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
-13. compile & install ed
-
+14. compile & install ed
 ~# cd /mnt/sda8/tmp/ed*/
 ~# ./configure --prefix=/usr
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
 
-14. compile & install util-linux
-
+15. compile & install util-linux
 ~# cd /mnt/sda8/tmp/util-linux*/
 ~# ./configure --prefix=/usr --exec-prefix=/ --enable-sulogin --libdir=/usr/lib
 ~# make CFLAGS=-DUSE_ONELINE
 ~# make DESTDIR=/mnt/sda8 install
 
-15. compile & install minimal-init-new
-
+16. compile & install minimal-init-new
 ~# cd /mnt/sda8/tmp/minimal-init-new*/
 ~# gcc -static -o init minimal-init-new.c
 ~# cp -p init /mnt/sda8/sbin
 
-16. update a few links
-
+17. update a few links
 ~# cd /mnt/sda8/etc/; ln -f -s ../proc/mounts mtab
 ~# chroot /mnt/sda8 ldconfig
 
-17. add /mnt/sda8/etc/init.d/rcS
-
+18. add /mnt/sda8/etc/init.d/rcS
 ~# cat > /mnt/sda8/etc/init.d/rcS << 'done'
 #!/bin/sh
 dmesg -n 1
@@ -131,8 +116,7 @@ exec /sbin/sulogin
 done
 ~# chmod 0755 /mnt/sda8/etc/init.d/rcS
 
-18. add /mnt/sda8/etc/fstab
-
+19. add /mnt/sda8/etc/fstab
 ~# cat > /mnt/sda8/etc/fstab << 'done'
 proc /proc proc defaults 0 0
 sysfs /sys sysfs defaults 0 0
@@ -141,8 +125,7 @@ tmpfs /run tmpfs defaults 0 0
 /dev/sda5 none swap sw 0 0
 done
 
-19. add /mnt/sda8/etc/os-release
-
+20. add /mnt/sda8/etc/os-release
 ~# cat > /mnt/sda8/etc/os-release << 'done'
 NAME="minimal-linux-new"
 VERSION="v3"
@@ -150,26 +133,23 @@ ID=linux
 HOME_URL="https://github.com/skewish"
 done
 
-20. add /mnt/sda8/etc/passwd
-
+21. add /mnt/sda8/etc/passwd
 ~# cat > /mnt/sda8/etc/passwd << 'done'
 root::0:0::/:/bin/bash
 done
 ~# chmod 0644 /mnt/sda8/etc/passwd
 
-21. generate a password for root
-
+22. generate a password for root
 ~# passwd -P /mnt/sda8 root (remember your password)
 
 	Changing password for root
 	New password:
 	Re-enter new password:
 
-22. update grub
-
+23. update grub
 ~# cd /
 ~# umount /dev/sda8
 ~# grub-install /dev/sda
 ~# update-grub
 
-23. reboot (at grub menu select minimal-linux-new)
+24. reboot (at grub menu select minimal-linux-new)
