@@ -74,7 +74,7 @@ https://github.com/skewish/minimal-init-new/ (newest release) --> /mnt/sda8/tmp
 ~# ./configure --prefix=/usr --exec-prefix=/ --with-curses --libdir=/usr/lib
 ~# make
 ~# make DESTDIR=/mnt/sda8 install
-~# cd /mnt/sda8/bin; ln -f -s bash sh
+~# cd /mnt/sda8/bin/; ln -f -s bash sh
 
 13. compile & install coreutils
 ~# cd /mnt/sda8/tmp/coreutils*/
